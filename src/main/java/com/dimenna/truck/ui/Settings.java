@@ -27,7 +27,7 @@ public class Settings extends BorderPane {
     public Settings() {
         setPadding(new Insets(24));
 
-        // TOP
+        
         var top = new BorderPane();
         top.setPadding(new Insets(0, 0, 16, 0));
 
