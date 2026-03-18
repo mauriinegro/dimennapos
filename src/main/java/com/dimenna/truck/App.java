@@ -14,7 +14,7 @@ public class App extends Application {
     private static App instance;
     private Scene scene;
 
-    // Cache
+    
     private MainMenuView mainMenuView;
     private ProductsView productsView;
     private SellView sellView;
