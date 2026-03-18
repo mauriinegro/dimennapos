@@ -26,7 +26,7 @@ public class ProductsView extends BorderPane {
         setPadding(new Insets(24));
         setStyle("-fx-background-color: -background;");
 
-        // ── TOP
+
         Button back = new Button("⬅ Volver");
         back.getStyleClass().add("btn-secondary");
         back.setFocusTraversable(false);
@@ -47,14 +47,14 @@ public class ProductsView extends BorderPane {
         header.setPadding(new Insets(0, 0, 18, 0));
         setTop(header);
 
-        // ── CENTER
+
         table.getStyleClass().addAll("dt-table", "productos-table");
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
         table.setFixedCellSize(44);
         table.setPrefHeight(600);
         table.setStyle("-fx-font-size: 1.15em; -fx-font-family: 'Roboto','Inter','Segoe UI',Arial,sans-serif;");
 
-        // Columnas
+
         TableColumn<Row, Number> cOrden = new TableColumn<>("Orden");
         cOrden.setCellValueFactory(new PropertyValueFactory<>("orden"));
         cOrden.setSortable(false);
@@ -174,7 +174,7 @@ public class ProductsView extends BorderPane {
 
         setCenter(sp);
 
-        // ── BOTTOM
+
         Button btnNew = new Button("Nuevo producto");
         btnNew.getStyleClass().add("btn-primary");
         btnNew.setFocusTraversable(false);
@@ -238,7 +238,7 @@ public class ProductsView extends BorderPane {
                 try {
                     dao.deleteAndCompact(row.getId());
                     reload();
-                    App.get().notifyCatalogChanged(); // ← NOTIFICA CAMBIO
+                    App.get().notifyCatalogChanged();
                 } catch (Exception ex) {
                     Alerts.error(getScene().getWindow(), "No se pudo eliminar:\n" + ex.getMessage())
                           .showAndWait();
@@ -253,7 +253,6 @@ public class ProductsView extends BorderPane {
         a.showAndWait();
     }
 
-    // ===== Row wrapper =====
     public static class Row {
         private final LongProperty id = new SimpleLongProperty();
         private final IntegerProperty orden = new SimpleIntegerProperty();
