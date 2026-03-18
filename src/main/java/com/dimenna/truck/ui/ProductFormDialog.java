@@ -26,7 +26,7 @@ public class ProductFormDialog extends Dialog<ProductFormDialog.Result> {
         setTitle(isEdit ? "Editar producto" : "Nuevo producto");
         setResizable(false);
 
-        // Botones
+
         getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL, ButtonType.OK);
         Button btnOk = (Button) getDialogPane().lookupButton(ButtonType.OK);
         Button btnCancel = (Button) getDialogPane().lookupButton(ButtonType.CANCEL);
@@ -44,7 +44,7 @@ public class ProductFormDialog extends Dialog<ProductFormDialog.Result> {
         getDialogPane().setHeaderText(null);
         getDialogPane().setMinWidth(460);
 
-        // Header
+
         Label title = new Label(isEdit ? "Editar producto" : "Nuevo producto");
         title.setStyle("-fx-font-size: 1.6em; -fx-font-weight: 900; -fx-text-fill: -primary;");
 
@@ -57,7 +57,7 @@ public class ProductFormDialog extends Dialog<ProductFormDialog.Result> {
         headerBox.setAlignment(Pos.CENTER_LEFT);
         headerBox.setPadding(new Insets(4, 4, 8, 4));
 
-        // Campos
+
         tfNombre.getStyleClass().add("text-field");
         tfNombre.setPromptText("Nombre del producto");
         tfNombre.setText(nombreInicial != null ? nombreInicial : "");
@@ -101,12 +101,11 @@ public class ProductFormDialog extends Dialog<ProductFormDialog.Result> {
         gp.add(lPrecio, 0, 1);
         gp.add(tfPrecio, 1, 1);
 
-        // Contenido
+
         VBox content = new VBox(10, headerBox, gp);
         content.setFillWidth(true);
         getDialogPane().setContent(content);
 
-        // Botones
         styleAsSmallButton(btnCancel);
         styleAsSmallButton(btnOk);
         btnOk.setStyle(
@@ -114,13 +113,13 @@ public class ProductFormDialog extends Dialog<ProductFormDialog.Result> {
             "; -fx-background-color: -accent; -fx-text-fill: #23272f; -fx-border-color: -accent;"
         );
 
-        // Centrar en pantalla al abrir
+
         Platform.runLater(() -> {
             var w = getDialogPane().getScene().getWindow();
             if (w instanceof Stage s) s.centerOnScreen();
         });
 
-        // Validación al aceptar
+
         btnOk.addEventFilter(javafx.event.ActionEvent.ACTION, evt -> {
             String n = tfNombre.getText().trim();
             String p = tfPrecio.getText().trim();
@@ -138,7 +137,7 @@ public class ProductFormDialog extends Dialog<ProductFormDialog.Result> {
             }
         });
 
-        // Resultado
+
         setResultConverter(bt -> {
             if (bt == ButtonType.OK) {
                 String n = tfNombre.getText().trim();
@@ -149,7 +148,6 @@ public class ProductFormDialog extends Dialog<ProductFormDialog.Result> {
         });
     }
 
-    // --- Helpers de estilo/validación ---
 
     private static void styleAsSmallButton(Button b) {
         if (b == null) return;
@@ -169,7 +167,7 @@ public class ProductFormDialog extends Dialog<ProductFormDialog.Result> {
     return Double.parseDouble(cleaned);
 }
 
-/** TextFormatter: solo permite dígitos */
+
 private static TextFormatter<String> numericFormatter() {
     java.util.function.UnaryOperator<TextFormatter.Change> filter = change -> {
         String t = change.getControlNewText();
