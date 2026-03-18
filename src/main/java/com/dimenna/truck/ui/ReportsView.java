@@ -2,7 +2,6 @@ package com.dimenna.truck.ui;
 
 import com.dimenna.truck.App;
 import com.dimenna.truck.core.Database;
-//import com.dimenna.truck.ui.ProductsView.Row;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -15,7 +14,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import org.apache.poi.util.Units;
 import java.io.InputStream;
-//import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -23,9 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Separator;
-//import javafx.scene.input.DataFormat;
 import javafx.scene.layout.*;
-// import javafx.scene.text.Font;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -72,7 +68,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
         setPadding(new Insets(24));
         setStyle("-fx-background-color: -background;");
 
-        // volver
+        
         Button back = new Button("⬅ Volver");
         back.getStyleClass().add("btn-secondary");
         back.setFocusTraversable(false);
@@ -82,7 +78,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
         header.setAlignment(Pos.CENTER_LEFT);
         setTop(header);
 
-        // LEFT CARD
+        
         styleTable(tblSesiones);
         tblSesiones.setPlaceholder(new Label("-"));
 
@@ -129,7 +125,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
             recomputeFinalActionsState();
         });
 
-        // Tickets del día
+        
         styleTable(tblTickets);
         tblTickets.setPlaceholder(new Label("—"));
 
@@ -180,7 +176,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
         VBox.setVgrow(tblTickets, Priority.ALWAYS);
         leftCard.setMaxWidth(Double.MAX_VALUE);
 
-        //RIGHT CARD
+        
         lblTitle.setStyle("-fx-font-size: 1.8em; -fx-font-weight: 900; -fx-text-fill: -primary;");
         lblInfo.setStyle("-fx-text-fill: -text-muted; -fx-font-size: 1.05em;");
         lblTickets.setStyle("-fx-text-fill: -primary; -fx-font-weight: 900;");
@@ -199,7 +195,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
         stats.addRow(1, t2, lblTotal);
         stats.addRow(2, t3, topList);
 
-        //entas por producto
+        
         styleTable(tblProductTotals);
         tblProductTotals.setPlaceholder(new Label("—"));
 
@@ -230,7 +226,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
         Label rightTitleTotals = new Label("Ventas por producto");
         rightTitleTotals.setStyle("-fx-font-weight: 800; -fx-text-fill: -primary;");
 
-        // Botón IMPRIMIR REPORTE FINAL
+        
         btnPrintFinal.getStyleClass().add("btn-primary");
         btnPrintFinal.setPrefHeight(42);
         btnPrintFinal.setMaxWidth(Double.MAX_VALUE);
@@ -241,7 +237,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
         btnExportFinal.setMaxWidth(Double.MAX_VALUE);
         btnExportFinal.setOnAction(e -> onExportFinal());
 
-        // HINT
+        
         printFinalHint.setWrapText(true);
         printFinalHint.setStyle("-fx-text-fill: -text-danger; -fx-font-size: 0.95em; -fx-font-weight: 700;");
         printFinalHint.setVisible(false);
@@ -315,28 +311,28 @@ public class ReportsView extends BorderPane implements Refreshable  {
    private void applyColumnWidths() {
     tblSesiones.widthProperty().addListener((obs, ow, nw) -> {
         double w = nw.doubleValue();
-        setWidthBounded(tblSesiones.getColumns().get(0), w * 0.07, 52,  84);   // ID 
-        setWidthBounded(tblSesiones.getColumns().get(1), w * 0.30, 170, 300);  // Apertura
-        setWidthBounded(tblSesiones.getColumns().get(2), w * 0.27, 160, 280);  // Cierre
-        setWidthBounded(tblSesiones.getColumns().get(3), w * 0.10,  60, 100);  // Tickets
-        setWidthBounded(tblSesiones.getColumns().get(4), w * 0.26, 160, 280);  // Total
+        setWidthBounded(tblSesiones.getColumns().get(0), w * 0.07, 52,  84);   
+        setWidthBounded(tblSesiones.getColumns().get(1), w * 0.30, 170, 300);  
+        setWidthBounded(tblSesiones.getColumns().get(2), w * 0.27, 160, 280);  
+        setWidthBounded(tblSesiones.getColumns().get(3), w * 0.10,  60, 100);  
+        setWidthBounded(tblSesiones.getColumns().get(4), w * 0.26, 160, 280);  
     });
 
-    // Tickets del día
+    
     tblTickets.widthProperty().addListener((obs, ow, nw) -> {
         double w = nw.doubleValue();
-        setWidthBounded(tblTickets.getColumns().get(0), w * 0.12,  84, 120);   // Nro
-        setWidthBounded(tblTickets.getColumns().get(1), w * 0.30, 180, 300);   // Fecha
-        setWidthBounded(tblTickets.getColumns().get(2), w * 0.38, 180, 520);   // Producto
-        setWidthBounded(tblTickets.getColumns().get(3), w * 0.20, 140, 220);   // Precio
+        setWidthBounded(tblTickets.getColumns().get(0), w * 0.12,  84, 120);   
+        setWidthBounded(tblTickets.getColumns().get(1), w * 0.30, 180, 300);   
+        setWidthBounded(tblTickets.getColumns().get(2), w * 0.38, 180, 520);   
+        setWidthBounded(tblTickets.getColumns().get(3), w * 0.20, 140, 220);   
     });
 
-    // Ventas por producto
+    
     tblProductTotals.widthProperty().addListener((obs, ow, nw) -> {
         double w = nw.doubleValue();
-        setWidthBounded(tblProductTotals.getColumns().get(0), w * 0.50, 190, 520); // Producto
-        setWidthBounded(tblProductTotals.getColumns().get(1), w * 0.12,  64, 110); // Cant.
-        setWidthBounded(tblProductTotals.getColumns().get(2), w * 0.38, 160, 300); // Subtotal
+        setWidthBounded(tblProductTotals.getColumns().get(0), w * 0.50, 190, 520); 
+        setWidthBounded(tblProductTotals.getColumns().get(1), w * 0.12,  64, 110); 
+        setWidthBounded(tblProductTotals.getColumns().get(2), w * 0.38, 160, 300); 
     });
 }
 
@@ -350,7 +346,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
 
     @Override public void onShow() { loadSessionsAsync(); }
 
-    /* Carga de datos (async) */
+    
 
     private void loadSessionsAsync() {
         tblSesiones.setDisable(true);
@@ -437,7 +433,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
                         }
                     }
                 }
-                // top 3 productos (día)
+                
                 try (var ps = c.prepareStatement(
                         """
                         SELECT producto, COUNT(*) as cant, COALESCE(SUM(precio),0) as tot
@@ -462,7 +458,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
                         if (!any) top.add(new Label("—"));
                     }
                 }
-                // tabla de tickets (día)
+                
                 try (var ps = c.prepareStatement(
                         "SELECT nro_ticket, fecha, producto, precio FROM tickets WHERE sesion_id=? ORDER BY id ASC")) {
                     ps.setLong(1, sesionId);
@@ -477,7 +473,7 @@ public class ReportsView extends BorderPane implements Refreshable  {
                         }
                     }
                 }
-                // ventas por producto (completo)
+                
                 try (var ps = c.prepareStatement(
                         """
                         SELECT producto, COUNT(*) as cant, COALESCE(SUM(precio),0) as tot
@@ -537,11 +533,11 @@ public class ReportsView extends BorderPane implements Refreshable  {
         return "";
     }
 
-    /*  Utils  */
+    
 
     private static String fmt(String iso) {
     try {
-        var dt = parseDbDateTime(iso); // ya lo tenés más abajo
+        var dt = parseDbDateTime(iso); 
         if (dt == null) return iso;
         var z = dt.atOffset(java.time.ZoneOffset.UTC)
                   .atZoneSameInstant(java.time.ZoneId.systemDefault());
@@ -555,7 +551,7 @@ private static String fmtNullable(String iso) {
     return fmt(iso);
 }
 
-    /*  Modelos tabla  */
+    
 
     public static class SesionRow {
         private final SimpleLongProperty id = new SimpleLongProperty();
@@ -707,7 +703,7 @@ private void recomputeFinalActionsState() {
     String msg = null;
     boolean ok = true;
 
-      // Si no hay NINGUNA sesión en la tabla
+      
     if (tblSesiones.getItems() == null || tblSesiones.getItems().isEmpty()) {
         msg = "No hay sesiones registradas.";
         ok = false;
@@ -734,7 +730,7 @@ private void recomputeFinalActionsState() {
 
     if (ok) {
         try (Connection c = Database.getConnection()) {
-            // Fechas
+            
             try (var ps = c.prepareStatement("SELECT fecha_apertura, fecha_cierre FROM sesiones WHERE id=?")) {
                 ps.setLong(1, sesionId);
                 try (ResultSet rs = ps.executeQuery()) {
@@ -748,7 +744,7 @@ private void recomputeFinalActionsState() {
                 ok = false;
             }
 
-            // Totales por producto
+            
             if (ok) {
                 try (var ps = c.prepareStatement("""
                         SELECT COUNT(*) AS cant, COALESCE(SUM(precio),0) AS subtotal
@@ -769,7 +765,7 @@ private void recomputeFinalActionsState() {
                 }
             }
 
-            // Impresora
+            
             if (ok) {
                 String printer = com.dimenna.truck.ui.PrinterService.get().getSelectedPrinter();
                 if (printer == null || printer.isBlank()) {
@@ -783,7 +779,7 @@ private void recomputeFinalActionsState() {
         }
     }
 
-    // UI: botones + hint
+   
     btnPrintFinal.setDisable(!ok);
     btnExportFinal.setDisable(!ok);
 
@@ -811,7 +807,7 @@ private void onExportFinal() {
     List<com.dimenna.truck.ui.RawPrinterJps.ItemTotal> items = new ArrayList<>();
 
     try (Connection c = Database.getConnection()) {
-        // Fechas
+        
         try (var ps = c.prepareStatement("SELECT fecha_apertura, fecha_cierre FROM sesiones WHERE id=?")) {
             ps.setLong(1, sesionId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -821,7 +817,7 @@ private void onExportFinal() {
                 }
             }
         }
-        // Totales por producto (filas)
+        
         try (var ps = c.prepareStatement("""
                 SELECT producto, COUNT(*) AS cant, COALESCE(SUM(precio),0) AS subtotal
                   FROM tickets
@@ -846,7 +842,7 @@ private void onExportFinal() {
         return;
     }
 
-    // FileChooser
+    
     FileChooser fc = new FileChooser();
 fc.setTitle("Guardar reporte final");
 fc.getExtensionFilters().addAll(
@@ -893,7 +889,7 @@ private void exportFinalCsv(File file, long sesionId, String apIso, String ciIso
         String dur      = (apIso != null && ciIso != null)
                 ? sessionDuration(apIso, ciIso) : "";
 
-        // Encabezado
+        
         bw.write(csv.apply("REPORTE FINAL")); bw.newLine();
         bw.write(csv.apply("Sesión") + ";" + csv.apply(Long.toString(sesionId))); bw.newLine();
         bw.write(csv.apply("Apertura") + ";" + csv.apply(apertura)); bw.newLine();
@@ -901,7 +897,7 @@ private void exportFinalCsv(File file, long sesionId, String apIso, String ciIso
         bw.write(csv.apply("Duración") + ";" + csv.apply(dur));      bw.newLine();
         bw.newLine();
 
-        // Tabla
+        
         bw.write(String.join(";", "Producto","Cantidad","Precio_unitario","Subtotal")); bw.newLine();
 
         long totalQty = 0;
@@ -930,7 +926,7 @@ private void exportFinalXlsx(File file, long sesionId, String apIso, String ciIs
         XSSFSheet sh = wb.createSheet("Reporte final");
         DataFormat df = wb.createDataFormat();
 
-        // ===== Estilos =====
+        
         CellStyle title = wb.createCellStyle();
         Font ftTitle = wb.createFont();
         ftTitle.setBold(true); ftTitle.setFontHeightInPoints((short)16);
@@ -990,7 +986,7 @@ private void exportFinalXlsx(File file, long sesionId, String apIso, String ciIs
         totalMoney.setFont(ftTotMoney);
         setTopBorderBold(totalMoney);
 
-        // ===== Contenido =====
+        
 
 sh.setColumnWidth(0, 11 * 256); 
 sh.setColumnWidth(1, 28 * 256); 
@@ -1076,15 +1072,15 @@ int dataEnd = r - 1;
 if (dataEnd >= dataStart) {
     sh.setAutoFilter(new CellRangeAddress(headerRow, dataEnd, 0, cols.length - 1));
 }
-// Zebra
+
 addZebra(wb, sh, dataStart, dataEnd, cols.length);
 
-// Auto‐ancho y ajustes finos
+
 for (int c = 0; c < cols.length; c++) sh.autoSizeColumn(c, true);
 bumpColumnWidth(sh, 0, 6);
 bumpColumnWidth(sh, 3, 2);
 
-// ==== Totales ====
+
 Row rtota = sh.createRow(++dataEnd + 1);
 cell(rtota, 0, "TOTAL", totalLabel);
 
@@ -1094,7 +1090,7 @@ Cell emp = rtota.createCell(2); emp.setCellStyle(totalMoney);
 
 formulaMoney(rtota, 3, "SUM(D" + (dataStart+1) + ":D" + (r) + ")", totalMoney);
 
-// Zebra
+
 addZebra(wb, sh, dataStart, dataEnd, cols.length);
 
 for (int c = 0; c < cols.length; c++) sh.autoSizeColumn(c, true);
@@ -1103,7 +1099,7 @@ bumpColumnWidth(sh, 3, 2);
 
 
 
-        // Config de impresión
+        
         PrintSetup ps = sh.getPrintSetup();
         ps.setLandscape(true);
         sh.setFitToPage(true);
@@ -1208,7 +1204,7 @@ private static String sessionDuration(String apIso, String ciIso) {
     return String.format("%d min", minutes);
 }
 
-// ReportsView.java
+
 
 private static String fmtLocalNoShift(String iso) {
     try {
