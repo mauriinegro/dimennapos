@@ -8,14 +8,14 @@ public class Database {
     private static final String DB_PATH = DB_DIR + File.separator + "dimennatruck.db";
     private static final String JDBC_URL = "jdbc:sqlite:" + DB_PATH;
 
-    /** Llamar una vez al inicio de la app (App.start). */
+    
     public static void init() {
         try {
-            // 1) Asegura carpeta data/
+            
             File dir = new File(DB_DIR);
             if (!dir.exists()) dir.mkdirs();
 
-            // 2) Crea todas las tablas si no existen, antes de cualquier otra operación
+            
             try (Connection c = getConnection(); Statement st = c.createStatement()) {
                 st.execute("""
                     CREATE TABLE IF NOT EXISTS productos(
@@ -49,7 +49,7 @@ public class Database {
                     ON tickets(sesion_id, nro_ticket)
                 """);
                 
-                // seed inicial SOLO si no hay productos
+                // si no hay productos
                 try (ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM productos")) {
                     if (rs.next() && rs.getInt(1) == 0) {
                         try (PreparedStatement ps = c.prepareStatement(
@@ -73,7 +73,6 @@ public class Database {
         ps.executeUpdate();
     }
 
-    /** Obtener conexión a SQLite (usa archivo data/dimennatruck.db). */
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(JDBC_URL);
     }
