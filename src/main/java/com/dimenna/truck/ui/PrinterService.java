@@ -21,18 +21,18 @@ public final class PrinterService {
     public void setSelectedPrinter(String name) { AppSettings.setSelectedPrinter(name); }
     public String getSelectedPrinter() { return AppSettings.getSelectedPrinter(); }
 
-    /** Ticket de prueba: logo centrado + texto + corte */
+
     public boolean printTest(String printerName) {
         try {
             RawPrinterJps.printTest(printerName);
             return true;
         } catch (Exception ex) {
-            Alerts.error(null, humanize(ex)); // <-- tu Alerts pide (Window, String)
+            Alerts.error(null, humanize(ex));
             return false;
         }
     }
 
-    /** Ticket real por ítem (logo + nombre + precio + hora + corte) */
+
     public boolean printItem(String printerName, String productName, int priceCents) {
         try {
             RawPrinterJps.printItem(printerName, productName, priceCents);
