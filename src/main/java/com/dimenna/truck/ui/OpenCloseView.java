@@ -30,7 +30,6 @@ public class OpenCloseView extends BorderPane implements Refreshable {
         setPadding(new Insets(24));
         setStyle("-fx-background-color: -background;");
 
-        // Header
         Button back = new Button("⬅ Volver");
         back.getStyleClass().add("btn-secondary");
         back.setFocusTraversable(false);
