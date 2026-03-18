@@ -34,7 +34,7 @@ public class SellView extends BorderPane implements Refreshable {
         setPadding(new Insets(24));
         setStyle("-fx-background-color: -background;");
 
-        // --- TOP: Volver ---
+       
         Button back = new Button("⬅ Volver");
         back.getStyleClass().add("btn-secondary");
         back.setFocusTraversable(false);
@@ -45,7 +45,7 @@ public class SellView extends BorderPane implements Refreshable {
         header.setAlignment(Pos.CENTER_LEFT);
         setTop(header);
 
-        // --- LEFT: Catálogo responsive (~3 por fila), botones 220x100 ---
+        
         catalog.setHgap(HGAP);
         catalog.setVgap(24);
         catalog.setAlignment(Pos.TOP_CENTER);
@@ -54,7 +54,7 @@ public class SellView extends BorderPane implements Refreshable {
 
         reloadCatalog();
 
-        // Scroll SOLO para el catálogo (izquierda)
+        
         ScrollPane productScroll = new ScrollPane(catalog);
         productScroll.setFitToWidth(true);
         productScroll.setFitToHeight(true);
@@ -67,7 +67,7 @@ public class SellView extends BorderPane implements Refreshable {
         leftCard.setPadding(new Insets(24));
         leftCard.setAlignment(Pos.TOP_CENTER);
 
-        // --- RIGHT: Cola + Total + Acciones ---
+        
         queueBox.setPadding(new Insets(0, 0, 0, 0));
         queueBox.setAlignment(Pos.TOP_CENTER);
 
@@ -116,7 +116,7 @@ public class SellView extends BorderPane implements Refreshable {
         btnClear.setStyle("-fx-font-size: 1.08em; -fx-font-weight: 700; -fx-background-radius: 4;");
         btnClear.setFocusTraversable(false);
 
-        // Vaciar cola
+        
         btnClear.setOnAction(e -> {
             if (queue.isEmpty()) return;
             Alert confirm = Alerts.confirm(
@@ -131,7 +131,7 @@ public class SellView extends BorderPane implements Refreshable {
             });
         });
 
-        // Imprimir
+       
         btnPrint.setOnAction(e -> {
             if (queue.isEmpty()) return;
 
@@ -278,7 +278,7 @@ public class SellView extends BorderPane implements Refreshable {
         }
     }
 
-    // --- SESIONES ---
+    
     private Long getSesionActivaId() {
         try (var c = com.dimenna.truck.core.Database.getConnection();
              var ps = c.prepareStatement(
