@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProductDAO {
 
-    /** Devuelve todos los productos ordenados por "orden". */
+    
     public List<Product> getAll() {
         List<Product> list = new ArrayList<>();
         try (Connection c = Database.getConnection();
@@ -31,7 +31,7 @@ public class ProductDAO {
         return list;
     }
 
-    /** Inserta un producto NUEVO al FINAL (orden automático = max(orden)+1). */
+    
     public void insert(String nombre, double precio) {
         int nextOrden = nextOrderValue();
         try (Connection c = Database.getConnection();
@@ -47,7 +47,7 @@ public class ProductDAO {
         }
     }
 
-    /** Actualiza nombre y precio. */
+    
     public void update(long id, String nombre, double precio) {
         try (Connection c = Database.getConnection();
              PreparedStatement ps = c.prepareStatement(
@@ -62,7 +62,7 @@ public class ProductDAO {
         }
     }
 
-    /** Borra un producto por ID. */
+   
     public void delete(long id) {
         try (Connection c = Database.getConnection();
              PreparedStatement ps = c.prepareStatement(
@@ -75,7 +75,7 @@ public class ProductDAO {
         }
     }
 
-    /** Borrar y compactar orden 1..n. */
+    
     public void deleteAndCompact(long id) {
         try (Connection c = Database.getConnection()) {
             c.setAutoCommit(false);
@@ -90,13 +90,13 @@ public class ProductDAO {
         }
     }
 
-    /** Mueve arriba (intercambia orden con el inmediato superior). */
+    
     public void moveUp(long id) {
         try (Connection c = Database.getConnection()) {
             c.setAutoCommit(false);
 
             int currentOrder = getOrderById(c, id);
-            if (currentOrder <= 1) { c.rollback(); return; } // ya está primero
+            if (currentOrder <= 1) { c.rollback(); return; }
 
             long upperId = getIdByOrder(c, currentOrder - 1);
             if (upperId <= 0) { c.rollback(); return; }
@@ -109,14 +109,14 @@ public class ProductDAO {
         }
     }
 
-    /** Mueve abajo (intercambia orden con el inmediato inferior). */
+   
     public void moveDown(long id) {
         try (Connection c = Database.getConnection()) {
             c.setAutoCommit(false);
 
             int currentOrder = getOrderById(c, id);
             int maxOrder = getMaxOrder(c);
-            if (currentOrder >= maxOrder) { c.rollback(); return; } // ya está último
+            if (currentOrder >= maxOrder) { c.rollback(); return; }
 
             long lowerId = getIdByOrder(c, currentOrder + 1);
             if (lowerId <= 0) { c.rollback(); return; }
@@ -129,7 +129,7 @@ public class ProductDAO {
         }
     }
 
-    /** Compacta orden dejando 1..n en el orden actual. */
+    
     public void compactSequentialOrder() {
         try (Connection c = Database.getConnection()) {
             c.setAutoCommit(false);
@@ -140,7 +140,7 @@ public class ProductDAO {
         }
     }
 
-    // ===== Helpers privados =====
+    
 
     private int nextOrderValue() {
         try (Connection c = Database.getConnection();
@@ -191,7 +191,7 @@ public class ProductDAO {
     }
 
     private void compactSequentialOrder(Connection c) throws SQLException {
-        // Asigna 1..n en el orden actual
+        
         try (Statement st = c.createStatement();
              ResultSet rs = st.executeQuery("SELECT id FROM productos ORDER BY orden ASC, id ASC")) {
             int idx = 1;
