@@ -25,16 +25,16 @@ Además, integra impresión de tickets mediante impresora térmica y permite ges
 
 ## Funcionalidades
 
-- Gestión de ventas con interfaz táctil  
-- Generación e impresión de tickets  
-- Manejo de cola de pedidos para impresión masiva  
-- Apertura y cierre de sesión diaria  
-- Reportes de ventas en tiempo real (parcial)  
-- Reportes finales por sesión  
-- Exportación de reportes a Excel  
-- ABM de productos (con orden personalizado)  
-- Configuración de impresora térmica  
-- Historial completo de sesiones y ventas  
+- ✅ Gestión de ventas con interfaz táctil  
+- ✅ Generación e impresión de tickets  
+- ✅ Manejo de cola de pedidos para impresión masiva  
+- ✅ Apertura y cierre de sesión diaria  
+- ✅ Reportes de ventas en tiempo real (parcial)  
+- ✅ Reportes finales por sesión  
+- ✅ Exportación de reportes a Excel  
+- ✅ ABM de productos (con orden personalizado)  
+- ✅ Configuración de impresora térmica  
+- ✅ Historial completo de sesiones y ventas  
 
 ---
 
@@ -96,7 +96,7 @@ El uso de SQLite permite operar completamente offline, lo cual es fundamental pa
 
 ---
 
-## Nota
+## 📌 Nota
 
 El código disponible en este repositorio corresponde a una versión simplificada del sistema original, publicada con fines demostrativos.
 
@@ -104,4 +104,4 @@ El código disponible en este repositorio corresponde a una versión simplificad
 
 ## Estado del proyecto
 
-Aplicación en uso real en eventos y operación comercial.
+✅ Aplicación en uso real en eventos y operación comercial.
